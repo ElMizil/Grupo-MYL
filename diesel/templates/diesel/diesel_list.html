@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Diesel | FlotaMYL{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'diesel/styles.css' %}">
+{% endblock %}
+
+{% block topbar_actions %}
+  <a href="{% url 'diesel_create' %}" class="btn btn-primary btn-sm">+ Nueva recarga</a>
+{% endblock %}
+
+{% block content %}
+  <div class="diesel-header">
+    <div>
+      <h1 class="diesel-title">Registros</h1>
+      <p class="diesel-subtitle">Histórico de recargas de diesel</p>
+    </div>
+
+    <div class="diesel-actions">
+      <a href="{% url 'diesel_create' %}" class="btn btn-primary">+ Nueva recarga</a>
+      <button class="btn">Generar reporte</button>
+    </div>
+  </div>
+
+  <div class="diesel-panel">
+    <div class="diesel-table-scroll">
+      <table class="diesel-table">
+        <thead>
+          <tr>
+            <th>Fecha</th><th>Ubicación</th><th>Unidad</th>
+            <th class="t-right">Litros</th>
+            <th class="t-right">Precio/L</th>
+            <th class="t-right">Total</th>
+            <th>Operador</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in logs %}
+          <tr>
+            <td>{{ r.fecha|date:"Y-m-d H:i" }}</td>
+            <td>{{ r.get_ubicacion_display }}</td>
+            <td>{{ r.unidad }}</td>
+            <td class="t-right">{{ r.litros }}</td>
+            <td class="t-right">{{ r.precio_por_litro }}</td>
+            <td class="t-right diesel-total">{{ r.costo_total }}</td>
+            <td>{{ r.operador }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="diesel-empty">Sin registros.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+

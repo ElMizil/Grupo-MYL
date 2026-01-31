@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}FlotaMYL{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'inicio/dashboard.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="brand">FlotaMYL</span>
+  </div>
+
+  <nav class="topbar-nav">
+    <a href="{% url 'inicio' %}"
+       class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+      Inicio
+    </a>
+
+    <a href="{% url 'diesel_list' %}"
+       class="nav-item {% if request.resolver_match.app_name == 'diesel' %}active{% endif %}">
+      Diesel
+    </a>
+
+    <a href="#" class="nav-item">Unidades</a>
+    <a href="#" class="nav-item">Reportes</a>
+    <a href="#" class="nav-item">Configuración</a>
+  </nav>
+
+  <div class="topbar-actions">
+    {% block topbar_actions %}{% endblock %}
+  </div>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

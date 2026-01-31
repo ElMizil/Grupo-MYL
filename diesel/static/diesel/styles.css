@@ -1,0 +1,180 @@
+/* static/diesel/styles.css
+   Diesel module styles that match the base dashboard theme.
+*/
+/* --------- Page header --------- */
+.diesel-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+
+.diesel-title{
+  margin:0;
+  font-size:22px;
+  font-weight:750;
+  letter-spacing:.2px;
+}
+
+.diesel-subtitle{
+  margin:6px 0 0;
+  color: var(--muted);
+  font-size:14px;
+}
+
+/* --------- Actions row (inside content, not topbar) --------- */
+.diesel-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Buttons (in case base doesn't define them) */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  text-decoration:none;
+  font-weight:650;
+  font-size:14px;
+
+  cursor:pointer;
+  transition: transform .06s ease, background .15s ease, border-color .15s ease;
+}
+
+.btn:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: rgba(155,176,211,.14);
+  border-color: rgba(155,176,211,.35);
+}
+
+.btn-primary:hover{
+  background: rgba(155,176,211,.20);
+  border-color: rgba(155,176,211,.50);
+}
+
+/* Optional: smaller button */
+.btn-sm{
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* --------- Table panel --------- */
+.diesel-panel{
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden; /* keeps rounded corners with table */
+}
+
+/* Toolbar above table (optional) */
+.diesel-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+}
+
+.diesel-toolbar .muted{
+  margin:0;
+  color: var(--muted);
+  font-size:14px;
+}
+
+/* Scroll wrapper for responsive tables */
+.diesel-table-scroll{
+  width:100%;
+  overflow:auto;
+}
+
+/* subtle scrollbar */
+.diesel-table-scroll::-webkit-scrollbar{ height:10px; }
+.diesel-table-scroll::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.10);
+  border-radius:999px;
+}
+.diesel-table-scroll::-webkit-scrollbar-track{
+  background: rgba(255,255,255,.03);
+}
+
+/* --------- Table --------- */
+.diesel-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:14px;
+}
+
+.diesel-table thead th{
+  text-align:left;
+  padding:12px 14px;
+  color: var(--muted);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.25px;
+  background: rgba(255,255,255,.02);
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+
+.diesel-table tbody td{
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+.diesel-table tbody tr:hover{
+  background: rgba(255,255,255,.03);
+}
+
+.diesel-table tbody tr:last-child td{ border-bottom:none; }
+
+/* alignment helpers */
+.t-right{ text-align:right; }
+.t-center{ text-align:center; }
+
+.diesel-total{
+  font-weight:800;
+}
+
+/* empty state */
+.diesel-empty{
+  padding:16px 14px;
+  color: var(--muted);
+}
+
+/* --------- Responsive tweaks --------- */
+@media (max-width: 900px){
+  .diesel-header{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .diesel-actions{
+    justify-content:flex-start;
+  }
+
+  .diesel-table thead th,
+  .diesel-table tbody td{
+    padding:10px 12px;
+  }
+}

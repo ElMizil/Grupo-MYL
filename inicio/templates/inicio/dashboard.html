@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | FlotaMYL{% endblock %}
+
+{% block content %}
+<section class="kpi-grid">
+  {% for item in kpis %}
+    {% include "inicio/_kpi_card.html" with item=item %}
+  {% endfor %}
+</section>
+
+<section class="widgets-grid">
+  <div class="panel">
+    <h2>Actividad reciente</h2>
+    <p class="muted">Sin datos aún.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Alertas</h2>
+    <p class="muted">Sin alertas.</p>
+  </div>
+</section>
+{% endblock %}
+
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{% static 'inicio/dashboard.css' %}">
+</head>
+<body>
+
+  <main class="container">
+    <section class="kpi-grid">
+      {% for item in kpis %}
+        {% include "inicio/_kpi_card.html" with item=item %}
+      {% endfor %}
+    </section>
+
+    <section class="widgets-grid">
+      <div class="panel">
+        <h2>Actividad reciente</h2>
+        {% if widgets.recent_activity %}
+          <ul>
+            {% for row in widgets.recent_activity %}
+              <li>{{ row }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="muted">Sin datos aún.</p>
+        {% endif %}
+      </div>
+
+      <div class="panel">
+        <h2>Alertas</h2>
+        {% if widgets.alerts %}
+          <ul>
+            {% for a in widgets.alerts %}
+              <li>{{ a }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="muted">Sin alertas.</p>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Registro de Diesel</title>
+  <link rel="stylesheet" href="{% static 'diesel/styles.css' %}">
+</head>
+<body>
+  <div class="card">
+    <h1>Registro de Diesel</h1>
+
+    {% if form.errors %}
+      <div class="errors">
+        Corrige los campos marcados.
+      </div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="grid">
+        <div>
+          <label for="{{ form.ubicacion.id_for_label }}">Ubicación</label>
+          {{ form.ubicacion }}
+          {{ form.ubicacion.errors }}
+        </div>
+
+        <div>
+          <label for="{{ form.unidad.id_for_label }}">Unidad</label>
+          {{ form.unidad }}
+          {{ form.unidad.errors }}
+        </div>
+
+        <div>
+          <label for="{{ form.litros.id_for_label }}">Litros</label>
+          {{ form.litros }}
+          {{ form.litros.errors }}
+        </div>
+
+        <div>
+          <label for="{{ form.precio_por_litro.id_for_label }}">Precio por litro</label>
+          {{ form.precio_por_litro }}
+          {{ form.precio_por_litro.errors }}
+        </div>
+
+        <div class="full">
+          <label for="{{ form.operador.id_for_label }}">Operador</label>
+          {{ form.operador }}
+          {{ form.operador.errors }}
+        </div>
+      </div>
+
+      <button type="submit">Registrar</button>
+    </form>
+
+    <p style="margin-top:12px;">
+      <a href="{% url 'diesel_list' %}">Ver registros</a>
+    </p>
+  </div>
+</body>
+</html>
